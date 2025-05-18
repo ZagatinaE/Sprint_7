@@ -7,7 +7,8 @@ class TestData:
     BASE_URL = 'https://qa-scooter.praktikum-services.ru/api/v1/'
     COURIER_URL = 'courier'
     ORDERS_URL = 'orders'
-
+    COURIER_LOGIN_CONFLICT = "Этот логин уже используется"
+    COURIER_CREATION_MISSING_FIELD = "Недостаточно данных для создания учетной записи"
 
     ORDER_DATA_BASE={
         "firstName": "Raisa",

@@ -12,20 +12,20 @@ def courier_data():
 
 
 @pytest.fixture
-def create_courier():
-    data_courier = TestData.get_courier_data()
-    response = requests.post(f"{TestData.BASE_URL}{TestData.COURIER_URL}", json=data_courier)
+def create_courier(courier_data):
+    #data_courier = TestData.get_courier_data()
+    response = requests.post(f"{TestData.BASE_URL}{TestData.COURIER_URL}", json=courier_data)
 
     login_response = requests.post(
         f"{TestData.BASE_URL}{TestData.COURIER_URL}/login",
         json={
-            "login": data_courier["login"],
-            "password": data_courier["password"]
+            "login": courier_data["login"],
+            "password": courier_data["password"]
         }
     )
     courier_id = login_response.json()["id"]
 
-    yield  {"id": courier_id, "data": data_courier}
+    yield  {"id": courier_id, "data": courier_data}
 
     requests.delete(f"{TestData.BASE_URL}{TestData.COURIER_URL}/{courier_id}")
 
